@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Challenge - Ton coach Instagram dans ta poche</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #ffffff;
+            overflow-x: hidden;
+            font-size: 16px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            text-decoration: none;
+            cursor: pointer;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #e91e63 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            margin-left: 2.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #e91e63, #ff1493);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav a:hover {
+            color: #e91e63;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 5rem 2rem 6rem;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #252525 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            min-height: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(233, 30, 99, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(35, 165, 213, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-30px) translateX(20px); }
+        }
+
+        .hero .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            animation: slideInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            display: block;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            font-weight: 800;
+            letter-spacing: -2px;
+            animation: slideInDown 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #e91e63 0%, #ff1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            color: #d0d0d0;
+            line-height: 1.7;
+            animation: slideInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+            font-weight: 400;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-right {
+            animation: slideInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+        }
+
+        /* Quick Signup Form */
+        .quick-signup {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 24px;
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quick-signup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(233, 30, 99, 0.5), transparent);
+        }
+
+        .quick-signup h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .form-group input {
+            padding: 1.1rem 1.2rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #e91e63;
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 20px rgba(233, 30, 99, 0.3);
+        }
+
+        .quick-signup button {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #e91e63 0%, #ff1493 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.4);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: -0.3px;
+        }
+
+        .quick-signup button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .quick-signup button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.4);
+        }
+
+        .quick-signup button:hover::before {
+            left: 100%;
+        }
+
+        .quick-signup button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(76, 175, 80, 0.15);
+            border: 2px solid rgba(76, 175, 80, 0.5);
+            border-radius: 12px;
+            color: #4CAF50;
+            font-weight: 600;
+            margin-top: 1rem;
+            backdrop-filter: blur(10px);
+            animation: slideInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Funnel Section */
+        .funnel-section {
+            display: none;
+            margin-top: 80px;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #2d2d2d 100%);
+            color: white;
+            text-align: center;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .funnel-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(233, 30, 99, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .funnel-section.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .funnel-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .funnel-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+
+        .funnel-section h2 span {
+            background: linear-gradient(135deg, #e91e63 0%, #ff1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .funnel-section p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            color: #e0e0e0;
+        }
+
+        /* Genre Options */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .genre-option {
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .genre-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(233, 30, 99, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .genre-option:hover {
+            background: rgba(233, 30, 99, 0.15);
+            border-color: #e91e63;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.2);
+        }
+
+        .genre-option:hover::before {
+            left: 100%;
+        }
+
+        .genre-option.selected {
+            background: linear-gradient(135deg, #e91e63 0%, #ff1493 100%);
+            border-color: #e91e63;
+            color: white;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.4);
+        }
+
+        /* Objective Options */
+        .objective-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .objective-option {
+            padding: 1.8rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(233, 30, 99, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .objective-option:hover {
+            background: rgba(233, 30, 99, 0.15);
+            border-color: #e91e63;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.2);
+        }
+
+        .objective-option:hover::before {
+            left: 100%;
+        }
+
+        .objective-option.selected {
+            background: linear-gradient(135deg, #e91e63 0%, #ff1493 100%);
+            border-color: #e91e63;
+            color: white;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.4);
+        }
+
+        /* Buttons */
+        .cta-button {
+            display: inline-block;
+            padding: 1.1rem 2.8rem;
+            background: linear-gradient(135deg, #e91e63 0%, #ff1493 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            margin-top: 1rem;
+            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.4);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            margin-left: 1rem;
+            box-shadow: none;
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: #e91e63;
+            border-color: white;
+        }
+
+        /* Section générale */
+        section {
+            padding: 8rem 2rem;
+            position: relative;
+        }
+
+        section h2 {
+            font-size: 3.2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #1a1a1a;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.2;
+        }
+
+        section h2 span {
+            background: linear-gradient(135deg, #e91e63 0%, #ff1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: white;
+            padding: 5rem 2rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item {
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #e91e63 0%, #ff1493 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: -2px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Music Genre Section */
+        .music-genre {
+            background: linear-gradient(180deg, #ffffff 0%, #f9f9f9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .music-genre::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(233, 30, 99, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .music-genre-intro {
+            max-width: 900px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            font-size: 1.15rem;
+            color: #666;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .genre-selection-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+            justify-content: center;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .genre-card {
+            padding: 0.9rem 1.8rem;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            font-weight: 600;
+            color: #1a1a1a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+            white-space: nowrap;
+        }
+
+        .genre-card-emoji {
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+
+        .genre-card-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .genre-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(233, 30, 99, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .genre-card:hover {
+            background: #f8f8f8;
+            border-color: #e91e63;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(233, 30, 99, 0.15);
+        }
+
+        .genre-card:hover::before {
+            left: 100%;
+        }
+
+        .genre-card.selected {
+            background: #1a1a1a;
+            border-color: #1a1a1a;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Removed grid-specific class */
+
+        /* Problem Section */
+        .problem {
+            background: linear-gradient(180deg, #f5f5f5 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(35, 165, 213, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 25s ease-in-out infinite reverse;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 2.8rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(233, 30, 99, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e91e63, #ff1493);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .problem-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .problem-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .problem-card h3 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .problem-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Solution Section */
+        .solution {
+            background: white;
+        }
+
+        .solution-intro {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            text-align: center;
+            font-size: 1.15rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* How it works */
+        .how-it-works {
+            background: linear-gradient(180deg, #f5f5f5 0%, #ffffff 100%);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .step {
+            background: white;
+            padding: 3rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(233, 30, 99, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(233, 30, 99, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .step:hover::before {
+            top: -20%;
+            right: -20%;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #e91e63 0%, #ff1493 100%);
+            color: white;
+            border-radius: 50%;
+            line-height: 70px;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .step h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step p {
+            color: #666;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Benefits */
+        .benefits {
+            background: white;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(233, 30, 99, 0.05) 0%, rgba(35, 165, 213, 0.05) 100%);
+            border-radius: 14px;
+            border: 1px solid rgba(233, 30, 99, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .benefit:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.1);
+            border-color: #e91e63;
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .benefit h3 {
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .benefit p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #2d2d2d 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(233, 30, 99, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            font-size: 1.15rem;
+            margin-bottom: 2rem;
+            color: #e0e0e0;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Testimonial */
+        .testimonial {
+            background: linear-gradient(180deg, #f5f5f5 0%, #ffffff 100%);
+        }
+
+        .testimonial-card {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 3.5rem;
+            border-radius: 16px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border-left: 5px solid #e91e63;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 4rem;
+            color: rgba(233, 30, 99, 0.1);
+            font-weight: 700;
+        }
+
+        .testimonial-text {
+            font-size: 1.15rem;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-role {
+            color: #e91e63;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* FAQ */
+        .faq {
+            background: white;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            color: #1a1a1a;
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-question:hover {
+            color: #e91e63;
+        }
+
+        .faq-answer {
+            color: #666;
+            line-height: 1.8;
+            animation: slideInUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            color: #999;
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer p {
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 0 0.5rem;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        /* Back button */
+        .back-button {
+            position: absolute;
+            top: 100px;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 0.9rem 1.8rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .back-button:hover {
+            background: rgba(233, 30, 99, 0.2);
+            border-color: #e91e63;
+            transform: translateX(-4px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+
+            .hero {
+                padding: 4rem 2rem 5rem;
+            }
+
+            .hero-image {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .genre-selection-grid {
+                gap: 0.8rem;
+            }
+
+            .genre-card {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                font-size: 1.15rem;
+            }
+
+            section h2 {
+                font-size: 2.2rem;
+                letter-spacing: -1px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2.5rem;
+            }
+
+            .stat-number {
+                font-size: 2.8rem;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .cta-secondary {
+                display: block;
+                margin-left: 0;
+                margin-top: 1rem;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+
+            .genre-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .back-button {
+                left: 1rem;
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
+
+            .genre-selection-grid {
+                gap: 0.7rem;
+            }
+
+            .genre-card {
+                padding: 0.75rem 1.3rem;
+                font-size: 0.85rem;
+            }
+
+            .hero-image {
+                max-width: 100%;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .funnel-section.active {
+            animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo" onclick="goHome()">Daily<span>Challenge</span></a>
+            <div>
+                <a href="#how">Comment ça marche</a>
+                <a href="#benefits">Bénéfices</a>
+                <a href="#faq">FAQ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN PAGE -->
+    <div id="mainPage">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-left">
+                    <h1>Arrête de <span>stagner</span> sur Instagram.</h1>
+                    <p>Un micro-défi par jour. 15 minutes max. Zéro pression.<br>Reprends le contrôle de ta visibilité musicale.</p>
+                    
+                    <!-- Quick Signup Form -->
+                    <div class="quick-signup">
+                        <h3>Commence maintenant (c'est gratuit)</h3>
+                        <form onsubmit="submitQuickSignup(event)">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" id="quickFirstName" placeholder="Ton prénom" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="email" id="quickEmail" placeholder="ton@email.com" required>
+                                </div>
+                            </div>
+                            <button type="submit">Recevoir mon premier défi</button>
+                        </form>
+                        <div class="success-message" id="quickSuccessMessage">
+                            ✅ Merci ! Vérifie ton email pour ton premier défi !
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <div class="hero-image">
+                        <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=1000&fit=crop&q=80" alt="Artiste musicale heureuse en performance">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Artistes inscrits</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15 min</div>
+                    <div class="stat-label">Par jour maximum</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">+50</div>
+                    <div class="stat-label">Followers/mois en moyenne</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Gratuit en bêta</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Music Genre Section -->
+        <section class="music-genre" id="genre-section">
+            <div class="container">
+                <h2>Accès direct et rapide aux <span>médias, playlists</span><br>et pros de la musique</h2>
+                <div class="music-genre-intro">
+                    <p>Sélectionne ton style musical pour recevoir des défis adaptés à ton univers</p>
+                </div>
+                <div class="genre-selection-grid">
+                    <div class="genre-card selected" onclick="toggleGenreCard(this, 'tous')">
+                        <span class="genre-card-name">Tous les genres</span>
+                    </div>
+                    <div class="genre-card" onclick="toggleGenreCard(this, 'pop')">
+                        <span class="genre-card-name">Pop</span>
+                    </div>
+                    <div class="genre-card" onclick="toggleGenreCard(this, 'rap')">
+                        <span class="genre-card-name">Hip-hop / Rap</span>
+                    </div>
+                    <div class="genre-card" onclick="toggleGenreCard(this, 'electro')">
+                        <span class="genre-card-name">Electronic</span>
+                    </div>
+                    <div class="genre-card" onclick="toggleGenreCard(this, 'rock')">
+                        <span class="genre-card-name">Rock / Punk</span>
+                    </div>
+                    <div class="genre-card" onclick="toggleGenreCard(this, 'rnb')">
+                        <span class="genre-card-name">R&B / Soul</span>
+                    </div>
+                    <div class="genre-card" onclick="toggleGenreCard(this, 'folk')">
+                        <span class="genre-card-name">Folk / Acoustique</span>
+                    </div>
+                    <div class="genre-card" onclick="toggleGenreCard(this, 'chanson')">
+                        <span class="genre-card-name">Chanson</span>
+                    </div>
+                    <div class="genre-card" onclick="toggleGenreCard(this, 'world')">
+                        <span class="genre-card-name">World / Spirituel</span>
+                    </div>
+                    <div class="genre-card" onclick="toggleGenreCard(this, 'metal')">
+                        <span class="genre-card-name">Metal</span>
+                    </div>
+                    <div class="genre-card" onclick="toggleGenreCard(this, 'jazz')">
+                        <span class="genre-card-name">Jazz</span>
+                    </div>
+                    <div class="genre-card" onclick="toggleGenreCard(this, 'classique')">
+                        <span class="genre-card-name">Classique / Instrumental</span>
+                    </div>
+                    <div class="genre-card" onclick="toggleGenreCard(this, 'reggae')">
+                        <span class="genre-card-name">Reggae</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem Section -->
+        <section class="problem">
+            <div class="container">
+                <h2>On connaît le <span>problème</span></h2>
+                <p style="text-align: center; color: #666; font-size: 1.25rem; max-width: 800px; margin: 0 auto 3rem; line-height: 1.8;">
+                    Tu crées de la musique incroyable. Mais Instagram ? C'est une autre histoire.
+                </p>
+                <div class="problem-grid">
+                    <div class="problem-card">
+                        <h3>⏰ Pas de temps</h3>
+                        <p>Tu ne sais pas comment trouver du temps pour créer du contenu quand tu passes déjà 8h en studio.</p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>🤔 Pas d'idées</h3>
+                        <p>La page blanche te paralyse. Tu ne sais pas quoi poster, comment l'annoncer, ou si ça va plaire.</p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>😰 Du stress</h3>
+                        <p>Les likes, les commentaires, les followers... ça devient une obsession qui tue ta créativité.</p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>🔇 Pas de résultats</h3>
+                        <p>Tu as l'impression de crier dans le vide. Tes posts disparaissent en 24h sans engagement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solution Section -->
+        <section class="solution">
+            <div class="container">
+                <h2>Comment ça marche ?<br><span>(Spoiler : c'est simple)</span></h2>
+                <div class="solution-intro">
+                    <p style="font-size: 1.25rem;">Chaque matin, reçois <strong>un micro-défi unique</strong>. Une action. 15 minutes max. Zéro prise de tête.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="how-it-works" id="how">
+            <div class="container">
+                <h2>Le process en <span>3 étapes</span></h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Reçois ton défi quotidien</h3>
+                        <p>Chaque matin, une mission adaptée à ton style : story interactive, coulisses du studio, collaboration avec d'autres artistes...</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Exécute (15 min max)</h3>
+                        <p>Action simple et concrète. Tu peux le faire entre deux sessions studio ou pendant ta pause café.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Observe la croissance</h3>
+                        <p>Ta communauté grandit naturellement. Tes followers augmentent. Et surtout : tu reprends confiance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits" id="benefits">
+            <div class="container">
+                <h2>Pourquoi ça marche <span>(pour de vrai)</span></h2>
+                <div class="benefits-list">
+                    <div class="benefit">
+                        <div class="benefit-icon">✅</div>
+                        <div>
+                            <h3>Fini le stress</h3>
+                            <p>Avance pas à pas, sans pression. Pas de "tu dois devenir viral". Juste de la progression régulière.</p>
+                        </div>
+                    </div>
+                    <div class="benefit">
+                        <div class="benefit-icon">💡</div>
+                        <div>
+                            <h3>Plus jamais en panne d'idées</h3>
+                            <p>Des centaines de défis variés : stories, Reels, posts, interactions, coulisses, collaborations...</p>
+                        </div>
+                    </div>
+                    <div class="benefit">
+                        <div class="benefit-icon">📈</div>
+                        <div>
+                            <h3>Une croissance régulière</h3>
+                            <p>Les artistes qui font un défi par jour gagnent en moyenne 50-100 followers qualifiés par mois.</p>
+                        </div>
+                    </div>
+                    <div class="benefit">
+                        <div class="benefit-icon">🎵</div>
+                        <div>
+                            <h3>Reste authentique</h3>
+                            <p>Pas de "hacks" sans âme. Des actions qui mettent vraiment en valeur ton art et ta personnalité.</p>
+                        </div>
+                    </div>
+                    <div class="benefit">
+                        <div class="benefit-icon">⏱️</div>
+                        <div>
+                            <h3>Gagne du temps</h3>
+                            <p>Plus besoin de passer 2h à réfléchir à quoi poster. On le fait pour toi. Tu exécutes, c'est tout.</p>
+                        </div>
+                    </div>
+                    <div class="benefit">
+                        <div class="benefit-icon">🤝</div>
+                        <div>
+                            <h3>Une communauté</h3>
+                            <p>Connecte-toi avec d'autres artistes qui relèvent les mêmes défis. Pas seul(e) dans l'aventure.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Arrête de procéder.<br>Commence aujourd'hui.</h2>
+                <p style="font-size: 1.2rem; margin-bottom: 2.5rem;">Aucune carte de crédit. Aucun engagement. Juste toi et ton premier défi.</p>
+                <button class="cta-button" onclick="scrollToGenre()" style="font-size: 1.1rem; padding: 1.3rem 3rem;">Recevoir mon premier défi →</button>
+            </div>
+        </section>
+
+        <!-- Testimonial -->
+        <section class="testimonial">
+            <div class="container">
+                <h2>Ce qu'ils en <span>pensent</span></h2>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        "Ça a changé ma façon de voir Instagram. Avant, je postais au hasard et ça me stressait. Maintenant, je reçois un défi, je l'exécute, et je passe à autre chose. J'ai gagné 180 followers en 2 mois sans m'en rendre compte."
+                    </p>
+                    <p class="testimonial-author">Léo M.</p>
+                    <p class="testimonial-role">Artiste Indie, Paris</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq" id="faq">
+            <div class="container">
+                <h2>Tu te poses des <span>questions ?</span></h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Combien de temps ça prend par jour ?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Maximum 15 minutes. La plupart des défis se font en 10 minutes. L'idée c'est la régularité, pas la perfection.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Faut-il être un expert des réseaux sociaux ?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Absolument pas ! L'app est faite pour les débutants comme pour ceux qui veulent simplement plus de structure. Chaque défi est expliqué simplement, avec des exemples concrets.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Quels types de défis vais-je recevoir ?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Les défis couvrent tout : stories interactives, Reels, posts engageants, interactions avec d'autres artistes, coulisses du studio, covers, collaborations, optimisation de profil... Toujours avec une approche musicale authentique.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Ça marche vraiment ?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Instagram récompense la régularité et l'authenticité. En faisant une petite action chaque jour, tu construis une dynamique. Les résultats arrivent après 3-4 semaines.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Puis-je personnaliser les défis ?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            Oui ! Tu peux indiquer tes préférences (genre musical, type de contenu, niveau d'expérience) et l'app adapte les défis. Tu peux aussi passer un défi si tu n'as vraiment pas le temps ce jour-là.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>C'est payant ?</span>
+                            <span>+</span>
+                        </div>
+                        <div class="faq-answer">
+                            La bêta est 100% gratuite. Aucune carte bancaire demandée. On teste avec les premiers utilisateurs avant de décider d'un prix.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FUNNEL PAGES -->
+
+    <!-- Step 1: Genre Selection -->
+    <section class="funnel-section" id="step1">
+        <button class="back-button" onclick="goHome()">← Retour</button>
+        <div class="funnel-container">
+            <h2>Quel est ton <span>style de musique</span> ?</h2>
+            <p>Sélectionne un ou plusieurs genres pour personnaliser tes défis</p>
+            <div class="genre-grid">
+                <div class="genre-option" onclick="toggleGenre(this, 'rap')">Rap</div>
+                <div class="genre-option" onclick="toggleGenre(this, 'pop')">Pop</div>
+                <div class="genre-option" onclick="toggleGenre(this, 'rock')">Rock</div>
+                <div class="genre-option" onclick="toggleGenre(this, 'trap')">Trap</div>
+                <div class="genre-option" onclick="toggleGenre(this, 'rnb')">R&B</div>
+                <div class="genre-option" onclick="toggleGenre(this, 'electro')">Électro</div>
+                <div class="genre-option" onclick="toggleGenre(this, 'indie')">Indie</div>
+                <div class="genre-option" onclick="toggleGenre(this, 'jazz')">Jazz</div>
+                <div class="genre-option" onclick="toggleGenre(this, 'reggae')">Reggae</div>
+                <div class="genre-option" onclick="toggleGenre(this, 'metal')">Metal</div>
+                <div class="genre-option" onclick="toggleGenre(this, 'classique')">Classique</div>
+                <div class="genre-option" onclick="toggleGenre(this, 'autre')">Autre</div>
+            </div>
+            <button class="cta-button" onclick="nextStep(1)" id="nextBtn1" disabled>Continuer</button>
+        </div>
+    </section>
+
+    <!-- Step 2: Objective Selection -->
+    <section class="funnel-section" id="step2">
+        <button class="back-button" onclick="previousStep(2)">← Retour</button>
+        <div class="funnel-container">
+            <h2>Quel est ton <span>objectif principal</span> ?</h2>
+            <p>Choisis l'objectif qui te correspond le plus</p>
+            <div class="objective-grid">
+                <div class="objective-option" onclick="selectObjective(this, 'vivre')">
+                    🎵 Vivre de ma musique
+                </div>
+                <div class="objective-option" onclick="selectObjective(this, 'visibilite')">
+                    📈 Développer ma visibilité
+                </div>
+                <div class="objective-option" onclick="selectObjective(this, 'manager')">
+                    🤝 Trouver un manager
+                </div>
+                <div class="objective-option" onclick="selectObjective(this, 'label')">
+                    🏷️ Signer dans un label
+                </div>
+            </div>
+            <button class="cta-button" onclick="nextStep(2)" id="nextBtn2" disabled>Continuer</button>
+        </div>
+    </section>
+
+    <!-- Step 3: Email Registration -->
+    <section class="funnel-section" id="step3">
+        <button class="back-button" onclick="goHome()">← Retour</button>
+        <div class="funnel-container">
+            <h2>Reçois ton <span>premier micro-défi</span><br>gratuitement !</h2>
+            <p>Commence dès aujourd'hui. Aucune carte bancaire requise.</p>
+            <form onsubmit="submitForm(event)">
+                <div class="form-group form-full">
+                    <input type="text" id="firstName" placeholder="Ton prénom" required>
+                </div>
+                <div class="form-group form-full">
+                    <input type="email" id="email" placeholder="ton@email.com" required>
+                </div>
+                <button type="submit" class="cta-button">Recevoir mon premier défi</button>
+            </form>
+            <div class="success-message" id="successMessage">
+                ✅ Merci ! Vérifie ton email pour ton premier défi !
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">&copy; 2025 Daily Challenge - Créé pour les artistes musicaux indépendants</p>
+        <p>
+            <a href="#">Confidentialité</a>
+            <a href="#">Conditions</a>
+            <a href="#">Contact</a>
+        </p>
+    </footer>
+
+    <script>
+        let selectedGenres = [];
+        let selectedObjective = '';
+
+        // Quick Signup Form
+        function submitQuickSignup(event) {
+            event.preventDefault();
+            
+            const firstName = document.getElementById('quickFirstName').value;
+            const email = document.getElementById('quickEmail').value;
+
+            const data = {
+                firstName: firstName,
+                email: email,
+                source: 'hero_quick_signup',
+                timestamp: new Date().toISOString()
+            };
+
+            console.log('Quick Signup Data:', data);
+            
+            // Send to Google Sheets
+            sendToGoogleSheets(data);
+
+            // Show success message
+            document.querySelector('.quick-signup form').style.display = 'none';
+            document.getElementById('quickSuccessMessage').style.display = 'block';
+
+            // Reset after 3 seconds
+            setTimeout(() => {
+                document.querySelector('.quick-signup form').style.display = 'block';
+                document.getElementById('quickSuccessMessage').style.display = 'none';
+                document.getElementById('quickFirstName').value = '';
+                document.getElementById('quickEmail').value = '';
+            }, 3000);
+        }
+
+        // Send to Formspree (ou autre service)
+        function sendToGoogleSheets(data) {
+            // Option 1: FORMSPREE (gratuit, 50 soumissions/mois)
+            // 1. Va sur formspree.io
+            // 2. Crée un compte gratuit
+            // 3. Crée un nouveau form
+            // 4. Copie l'URL et remplace ci-dessous
+            const FORMSPREE_URL = 'https://formspree.io/f/xovkzray';
+            
+            fetch(FORMSPREE_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log('✅ Données envoyées avec succès:', result);
+            })
+            .catch(error => {
+                console.log('❌ Erreur:', error);
+                console.log('Data logged:', data);
+            });
+        }
+
+        // Genre Card Toggle - Scroll to funnel signup
+        function toggleGenreCard(element, genre) {
+            // Sauvegarder le genre sélectionné
+            if (!selectedGenres.includes(genre)) {
+                selectedGenres.push(genre);
+            }
+            
+            // Démarrer le funnel directement à l'étape 3 (inscription)
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('step3').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Funnel Navigation
+        function startFunnel() {
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('step1').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        function goHome() {
+            document.getElementById('mainPage').style.display = 'block';
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3').classList.remove('active');
+            selectedGenres = [];
+            selectedObjective = '';
+            resetForm();
+            window.scrollTo(0, 0);
+        }
+
+        function scrollToGenre() {
+            const genreSection = document.getElementById('genre-section');
+            genreSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function nextStep(step) {
+            if (step === 1) {
+                document.getElementById('step1').classList.remove('active');
+                document.getElementById('step2').classList.add('active');
+            } else if (step === 2) {
+                document.getElementById('step2').classList.remove('active');
+                document.getElementById('step3').classList.add('active');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        function previousStep(step) {
+            if (step === 2) {
+                document.getElementById('step2').classList.remove('active');
+                document.getElementById('step1').classList.add('active');
+            } else if (step === 3) {
+                document.getElementById('step3').classList.remove('active');
+                document.getElementById('step2').classList.add('active');
+            }
+            window.scrollTo(0, 0);
+        }
+
+        // Genre Selection
+        function toggleGenre(element, genre) {
+            element.classList.toggle('selected');
+            
+            if (selectedGenres.includes(genre)) {
+                selectedGenres = selectedGenres.filter(g => g !== genre);
+            } else {
+                selectedGenres.push(genre);
+            }
+
+            // Enable/disable button
+            document.getElementById('nextBtn1').disabled = selectedGenres.length === 0;
+        }
+
+        // Objective Selection
+        function selectObjective(element, objective) {
+            // Remove previous selection
+            document.querySelectorAll('.objective-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            
+            // Add selection to clicked element
+            element.classList.add('selected');
+            selectedObjective = objective;
+            
+            // Enable button
+            document.getElementById('nextBtn2').disabled = false;
+        }
+
+        // Form Submission
+        function submitForm(event) {
+            event.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value;
+            const email = document.getElementById('email').value;
+
+            // Prepare data
+            const data = {
+                firstName: firstName,
+                email: email,
+                genres: selectedGenres.join(', '),
+                objective: selectedObjective,
+                timestamp: new Date().toISOString()
+            };
+
+            console.log('User Data:', data);
+            
+            // Send to Google Sheets
+            sendToGoogleSheets(data);
+
+            // Show success message
+            document.querySelector('#step3 form').style.display = 'none';
+            document.getElementById('successMessage').style.display = 'block';
+        }
+
+        function resetForm() {
+            document.querySelector('#step3 form').style.display = 'block';
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('firstName').value = '';
+            document.getElementById('email').value = '';
+        }
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isVisible = answer.style.display === 'block';
+                
+                // Ferme toutes les autres réponses
+                document.querySelectorAll('.faq-answer').forEach(a => {
+                    a.style.display = 'none';
+                });
+                document.querySelectorAll('.faq-question span:last-child').forEach(span => {
+                    span.textContent = '+';
+                });
+                
+                // Toggle la réponse actuelle
+                if (!isVisible) {
+                    answer.style.display = 'block';
+                    this.querySelector('span:last-child').textContent = '−';
+                }
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
