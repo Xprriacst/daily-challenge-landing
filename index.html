@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daily Challenge - Ton coach Instagram dans ta poche</title>
+    <title>MusicGrowth - Développe ton Instagram d'artiste</title>
     <style>
         * {
             margin: 0;
@@ -259,9 +259,9 @@
 
         .form-group input {
             padding: 1.1rem 1.2rem;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 14px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             color: white;
             font-size: 1rem;
             font-weight: 500;
@@ -270,7 +270,8 @@
         }
 
         .form-group input::placeholder {
-            color: rgba(255, 255, 255, 0.4);
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
         }
 
         .form-group input:focus {
@@ -282,19 +283,20 @@
 
         .quick-signup button {
             width: 100%;
-            padding: 1.2rem;
+            padding: 1.3rem;
             background: linear-gradient(135deg, #e91e63 0%, #ff1493 100%);
             color: white;
             border: none;
             border-radius: 14px;
-            font-weight: 700;
-            font-size: 1.05rem;
+            font-weight: 800;
+            font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.4);
+            box-shadow: 0 15px 45px rgba(233, 30, 99, 0.6);
             position: relative;
             overflow: hidden;
-            letter-spacing: -0.3px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
         }
 
         .quick-signup button::before {
@@ -309,8 +311,8 @@
         }
 
         .quick-signup button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.4);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.7);
         }
 
         .quick-signup button:hover::before {
@@ -379,6 +381,7 @@
             margin-bottom: 2rem;
             font-weight: 900;
             letter-spacing: -0.5px;
+            color: #ffffff;
         }
 
         .funnel-section h2 span {
@@ -389,9 +392,10 @@
         }
 
         .funnel-section p {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             margin-bottom: 3rem;
-            color: #e0e0e0;
+            color: #f0f0f0;
+            font-weight: 400;
         }
 
         /* Genre Options */
@@ -501,20 +505,21 @@
         /* Buttons */
         .cta-button {
             display: inline-block;
-            padding: 1.1rem 2.8rem;
+            padding: 1.3rem 3rem;
             background: linear-gradient(135deg, #e91e63 0%, #ff1493 100%);
             color: white;
             text-decoration: none;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1.05rem;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 1.1rem;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border: none;
             cursor: pointer;
             margin-top: 1rem;
-            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);
+            box-shadow: 0 15px 45px rgba(233, 30, 99, 0.6);
             position: relative;
             overflow: hidden;
+            letter-spacing: 0.3px;
         }
 
         .cta-button::before {
@@ -530,8 +535,8 @@
 
         .cta-button:hover {
             background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.4);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.7);
         }
 
         .cta-button:hover::before {
@@ -548,15 +553,18 @@
         .cta-secondary {
             background: transparent;
             color: white;
-            border: 2px solid white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
             margin-left: 1rem;
             box-shadow: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .cta-secondary:hover {
-            background: white;
-            color: #e91e63;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
             border-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
         }
 
         /* Section générale */
@@ -1264,7 +1272,7 @@
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <a href="#" class="logo" onclick="goHome()">Daily<span>Challenge</span></a>
+            <a href="#" class="logo" onclick="goHome()">Music<span>Growth</span></a>
             <div>
                 <a href="#how">Comment ça marche</a>
                 <a href="#benefits">Bénéfices</a>
@@ -1279,8 +1287,14 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-left">
-                    <h1>Arrête de <span>stagner</span> sur Instagram.</h1>
-                    <p>Un micro-défi par jour. 15 minutes max. Zéro pression.<br>Reprends le contrôle de ta visibilité musicale.</p>
+                    <h1>Développe (enfin) ton <span>Insta d'artiste</span></h1>
+                    <p>Sans te mettre la pression • Avec une stratégie claire • Pour obtenir les résultats que tu mérites</p>
+                    <div style="margin: 1.5rem 0; padding: 1.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 12px; border-left: 3px solid #e91e63;">
+                        <p style="margin: 0; font-size: 1.15rem; line-height: 1.8;">
+                            <strong>+57% de followers en 50 jours en moyenne</strong><br>
+                            Application 100% gratuite
+                        </p>
+                    </div>
                     
                     <!-- Quick Signup Form -->
                     <div class="quick-signup">
@@ -1302,10 +1316,15 @@
                             ✅ Merci ! Vérifie ton email pour ton premier défi !
                         </div>
                     </div>
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <a href="#examples" class="cta-secondary" style="display: inline-block; padding: 0.9rem 2rem; background: transparent; color: white; text-decoration: none; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 12px; font-weight: 600; transition: all 0.3s;">
+                            Voir les exemples de défis →
+                        </a>
+                    </div>
                 </div>
                 <div class="hero-right">
                     <div class="hero-image">
-                        <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&h=1000&fit=crop&q=80" alt="Artiste musicale heureuse en performance">
+                        <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&h=1000&fit=crop&q=80" alt="Artiste en studio d'enregistrement">
                     </div>
                 </div>
             </div>
@@ -1323,12 +1342,53 @@
                     <div class="stat-label">Par jour maximum</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">+50</div>
-                    <div class="stat-label">Followers/mois en moyenne</div>
+                    <div class="stat-number">+57%</div>
+                    <div class="stat-label">De followers en 50 jours</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">100%</div>
-                    <div class="stat-label">Gratuit en bêta</div>
+                    <div class="stat-label">Gratuit</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Examples Section -->
+        <section class="solution" id="examples" style="padding: 6rem 2rem; background: linear-gradient(180deg, #ffffff 0%, #f9f9f9 100%);">
+            <div class="container">
+                <h2>Exemples de <span>défis quotidiens</span></h2>
+                <div class="solution-intro">
+                    <p>Voici quelques exemples de défis que tu pourrais recevoir chaque jour</p>
+                </div>
+                <div class="problem-grid" style="margin-top: 3rem;">
+                    <div class="problem-card">
+                        <h3>🎤 Story interactive</h3>
+                        <p>"Partage un sondage : quelle chanson veux-tu que je reprenne en acoustique ? Propose 2 options"</p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>🎬 Coulisses studio</h3>
+                        <p>"Filme 15 secondes de ta session d'enregistrement aujourd'hui et partage le moment le plus drôle ou intense"</p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>💬 Engagement communauté</h3>
+                        <p>"Réponds à 5 commentaires sur tes anciens posts avec des messages personnalisés et authentiques"</p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>🎵 Teaser création</h3>
+                        <p>"Partage 10 secondes de ton prochain morceau avec la question : 'Ce son te donne quelle vibe ?'"</p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>🤝 Collaboration artiste</h3>
+                        <p>"Identifie un artiste que tu admires dans ta story et explique en quoi son travail t'inspire"</p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>📸 Moment authentique</h3>
+                        <p>"Partage une photo 'avant/après' : toi avant et après une session créative intense"</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#genre-section" class="cta-button" style="display: inline-block; text-decoration: none; font-size: 1.05rem; padding: 1.2rem 2.8rem;">
+                        Je veux recevoir mes défis personnalisés !
+                    </a>
                 </div>
             </div>
         </section>
@@ -1336,9 +1396,9 @@
         <!-- Music Genre Section -->
         <section class="music-genre" id="genre-section">
             <div class="container">
-                <h2>Accès direct et rapide aux <span>médias, playlists</span><br>et pros de la musique</h2>
+                <h2>Des défis <span>personnalisés</span><br>pour ton style musical</h2>
                 <div class="music-genre-intro">
-                    <p>Sélectionne ton style musical pour recevoir des défis adaptés à ton univers</p>
+                    <p>Sélectionne ton style pour recevoir une idée de post par jour adaptée à ton univers et développer ta visibilité</p>
                 </div>
                 <div class="genre-selection-grid">
                     <div class="genre-card selected" onclick="toggleGenreCard(this, 'tous')">
@@ -1380,6 +1440,11 @@
                     <div class="genre-card" onclick="toggleGenreCard(this, 'reggae')">
                         <span class="genre-card-name">Reggae</span>
                     </div>
+                </div>
+                <div style="text-align: center; margin-top: 2.5rem;">
+                    <button class="cta-button" onclick="startFunnelFromGenre()" style="font-size: 1.1rem; padding: 1.3rem 3rem; background: linear-gradient(135deg, #e91e63 0%, #ff1493 100%); box-shadow: 0 15px 40px rgba(233, 30, 99, 0.5);">
+                        Accéder à mon premier défi gratuitement !
+                    </button>
                 </div>
             </div>
         </section>
@@ -1657,7 +1722,7 @@
 
     <!-- Footer -->
     <footer>
-        <p style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">&copy; 2025 Daily Challenge - Créé pour les artistes musicaux indépendants</p>
+        <p style="font-size: 0.9rem; color: #666; margin-bottom: 1.5rem;">&copy; 2025 MusicGrowth - Créé pour les artistes musicaux indépendants</p>
         <p>
             <a href="#">Confidentialité</a>
             <a href="#">Conditions</a>
@@ -1727,13 +1792,28 @@
             });
         }
 
-        // Genre Card Toggle - Scroll to funnel signup
+        // Genre Card Toggle - Multi-selection
         function toggleGenreCard(element, genre) {
-            // Sauvegarder le genre sélectionné
-            if (!selectedGenres.includes(genre)) {
+            // Toggle la sélection visuelle
+            element.classList.toggle('selected');
+
+            // Gérer le tableau des genres sélectionnés
+            if (selectedGenres.includes(genre)) {
+                selectedGenres = selectedGenres.filter(g => g !== genre);
+            } else {
                 selectedGenres.push(genre);
             }
-            
+
+            console.log('Genres sélectionnés:', selectedGenres);
+        }
+
+        // Start Funnel from Genre Selection
+        function startFunnelFromGenre() {
+            // Si aucun genre sélectionné, prendre "tous"
+            if (selectedGenres.length === 0) {
+                selectedGenres.push('tous');
+            }
+
             // Démarrer le funnel directement à l'étape 3 (inscription)
             document.getElementById('mainPage').style.display = 'none';
             document.getElementById('step3').classList.add('active');
